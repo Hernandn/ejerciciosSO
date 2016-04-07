@@ -59,11 +59,11 @@ int main(void)
    } else {
       printf("Esta %d\n",m->valor);
    }
-/*
    //ARCHIVOS
    printf("ARCHIVOS\n\n");
+
    //escribir lineas
-   FILE* f1=fopen("archivo.txt","r+");
+   FILE* f1=fopen("archivo.txt","w+");
    char linea[100];
    printf("-->");
    gets(linea);
@@ -75,8 +75,7 @@ int main(void)
       gets(linea);
    }
    fclose(f1);
-   */
-/*
+
    //leer lineas
    FILE* f2=fopen("archivo.txt","r+");
    char linea2[100];
@@ -99,9 +98,9 @@ int main(void)
    while( !feof(arch) )
    {
       printf("%s, %.2f, %d\n",nombre,altura,edad);
-      fscanf(arch,"%s %f %d",nombre,&altura,&edad);
+      fscanf(arch,"%s,%f,%d",nombre,&altura,&edad);
    }
-   fclose(arch);*/
+   fclose(arch);
 
    return 0;
 }
