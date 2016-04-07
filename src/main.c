@@ -21,6 +21,13 @@ void agregar(Nodo**, int);
 void mostrar(Nodo*);
 void liberar(Nodo**);
 Nodo* buscar(Nodo*,int);
+void eliminar(Nodo**, int);
+Nodo* insertarOrdenado(Nodo** p, int v);
+Nodo* buscarEInsertarOrdenado(Nodo** p, int v, int* enc);
+void push(Nodo** p, int v);
+int pop(Nodo** p);
+int pilaVacia(Nodo* p);
+
 
 int main(void)
 {
@@ -30,6 +37,8 @@ int main(void)
    agregar(&p,5);
    agregar(&p,8);
    agregar(&p,7);
+   agregar(&p,7);
+   eliminar(&p,7);
    agregar(&p,3);
    agregar(&p,9);
 
@@ -108,3 +117,117 @@ Nodo* buscar(Nodo* p,int v)
    return aux;
 }
 
+void eliminar(Nodo** p, int v)
+{
+   Nodo* aux = *p;
+   Nodo* ant = NULL;
+   while((aux!=NULL )&& (aux->valor!=v) ){
+   ant=aux;
+   aux=aux->sig;
+}
+   if(aux!=NULL )
+   {
+      if(ant!=NULL )
+      {
+         ant->sig = aux->sig;
+      }
+      else
+      {
+         *p = aux->sig;
+      }
+      free(aux);
+   }
+}
+
+Nodo* insertarOrdenado(Nodo** p, int v)
+{
+   Nodo* nuevo = (Nodo*)malloc(sizeof(Nodo));
+   nuevo->valor = v;
+   nuevo->sig = NULL;
+   Nodo* aux = *p;
+   Nodo* ant = NULL;
+   while((aux!=NULL )&& (aux->valor <= v) ){
+   ant = aux;
+   aux = aux->sig;
+}
+   if(ant==NULL )
+   {
+      *p = nuevo;
+   }
+   else
+   {
+      ant->sig = nuevo;
+   }
+   nuevo->sig = aux;
+   return nuevo;
+}
+
+Nodo* buscarEInsertarOrdenado(Nodo** p, int v, int* enc)
+{
+   Nodo* r = buscar(*p,v);
+   *enc = r!=NULL;
+   if(!*enc)
+   {
+      r = insertarOrdenado(p,v);
+   }
+   return r;
+}
+
+//PILAS
+void push(Nodo** p, int v)
+{
+   Nodo* nuevo = (Nodo*)malloc(sizeof(Nodo));
+   nuevo->valor = v;
+   nuevo->sig = *p;
+   *p = nuevo;
+}
+int pop(Nodo** p)
+{
+   Nodo* aux = *p;
+   int ret = aux->valor;
+   *p = aux->sig;
+   free(aux);
+   return ret;
+}
+int pilaVacia(Nodo* p)
+{
+   return p==NULL;
+}
+
+
+//COLAS
+void encolar(Nodo** p, int v)
+{
+   Nodo* nuevo = (Nodo*)malloc(sizeof(Nodo));
+   nuevo->valor = v;
+   if(*p==NULL )
+   {
+      nuevo->sig = nuevo;
+   }
+   else
+   {
+      nuevo->sig = (*p)->sig;
+      (*p)->sig = nuevo;
+   }
+   *p = nuevo;
+}
+int desencolar(Nodo** p)
+{
+   int ret = (*p)->sig->valor;
+   if(*p==(*p)->sig)
+   {
+      free(*p);
+      *p = NULL;
+   }
+   else
+   {
+      Nodo* aux = (*p)->sig;
+      (*p)->sig = aux->sig;
+      free(aux);
+   }
+   return ret;
+}
+int colaVacia(Nodo* p)
+{
+   return p==NULL;
+}
