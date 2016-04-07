@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct Nodo
 {
@@ -27,13 +28,15 @@ Nodo* buscarEInsertarOrdenado(Nodo** p, int v, int* enc);
 void push(Nodo** p, int v);
 int pop(Nodo** p);
 int pilaVacia(Nodo* p);
+void encolar(Nodo** p, int v);
+int desencolar(Nodo** p);
+int colaVacia(Nodo* p);
 
 
 int main(void)
 {
-   // inicializamos la lista
    Nodo* p = NULL;
-   // le agregamos valores a traves de la funcion agregar
+
    agregar(&p,5);
    agregar(&p,8);
    agregar(&p,7);
@@ -48,11 +51,7 @@ int main(void)
    } else {
       printf("Esta %d\n",n->valor);
    }
-   // mostramos por pantalla el contenido de lista
-   // la funcion mostrar la analizaremos a continuacion
    mostrar(p);
-   // antes de fi nalizar el programa liberamos la memoria
-   // que ocupan los nodos de la lista (lo analizaremos mas adelante)
    liberar(&p);
    Nodo* m = buscar(p,3);
    if(m==NULL){
@@ -60,6 +59,49 @@ int main(void)
    } else {
       printf("Esta %d\n",m->valor);
    }
+/*
+   //ARCHIVOS
+   printf("ARCHIVOS\n\n");
+   //escribir lineas
+   FILE* f1=fopen("archivo.txt","r+");
+   char linea[100];
+   printf("-->");
+   gets(linea);
+   while( strcmp(linea,"FIN") )
+   {
+      fprintf(f1,"%s\n",linea);
+
+      printf("-->");
+      gets(linea);
+   }
+   fclose(f1);
+   */
+/*
+   //leer lineas
+   FILE* f2=fopen("archivo.txt","r+");
+   char linea2[100];
+   // leo una linea
+   fgets(linea2,100,f2);
+   while( !feof(f2) )
+   {
+      printf("--> %s",linea2);
+      // leo la siguiente linea
+      fgets(linea2,100,f2);
+   }
+   fclose(f2);
+
+   //leer registro con formato (comas)
+   FILE* arch=fopen("archivo.txt","r+");
+   char nombre[11];
+   float altura;
+   int edad;
+   fscanf(arch,"%s,%f,%d",nombre,&altura,&edad);
+   while( !feof(arch) )
+   {
+      printf("%s, %.2f, %d\n",nombre,altura,edad);
+      fscanf(arch,"%s %f %d",nombre,&altura,&edad);
+   }
+   fclose(arch);*/
 
    return 0;
 }
