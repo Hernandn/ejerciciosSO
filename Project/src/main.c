@@ -62,10 +62,12 @@ int main(void)
    //ARCHIVOS
    printf("ARCHIVOS\n\n");
 
+   /*
    //escribir lineas
    FILE* f1=fopen("archivo.txt","w+");
    char linea[100];
    printf("-->");
+   char c;
    gets(linea);
    while( strcmp(linea,"FIN") )
    {
@@ -74,7 +76,7 @@ int main(void)
       printf("-->");
       gets(linea);
    }
-   fclose(f1);
+   fclose(f1);*/
 
    //leer lineas
    FILE* f2=fopen("archivo.txt","r+");
@@ -94,11 +96,11 @@ int main(void)
    char nombre[11];
    float altura;
    int edad;
-   fscanf(arch,"%s,%f,%d",nombre,&altura,&edad);
+   fscanf(arch,"%s, %f, %d",nombre,&altura,&edad);
    while( !feof(arch) )
    {
       printf("%s, %.2f, %d\n",nombre,altura,edad);
-      fscanf(arch,"%s,%f,%d",nombre,&altura,&edad);
+      fscanf(arch,"%s, %f, %d",nombre,&altura,&edad);
    }
    fclose(arch);
 
