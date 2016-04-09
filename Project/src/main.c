@@ -62,7 +62,7 @@ int main(void)
    //ARCHIVOS
    printf("ARCHIVOS\n\n");
 
-   /*
+
    //escribir lineas
    FILE* f1=fopen("archivo.txt","w+");
    char linea[100];
@@ -76,7 +76,7 @@ int main(void)
       printf("-->");
       gets(linea);
    }
-   fclose(f1);*/
+   fclose(f1);
 
    //leer lineas
    FILE* f2=fopen("archivo.txt","r+");
