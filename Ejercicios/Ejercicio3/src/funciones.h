@@ -15,8 +15,12 @@ typedef struct Archivo
 } Archivo;
 
 typedef struct Persona {
-	char* nombre;
-	char* apellido;
+	char* region;
+	char* nombreApellido;
+	int edad;
+	char* telefono;
+	char* dni;
+	int saldo;
 } Persona;
 
 #endif /* FUNCIONES_H_ */
@@ -31,6 +35,12 @@ void parseFile(Archivo* file, void(*funcion)(char*));
 void imprimirLinea(char* string);
 void guardarRegistrosEnArchivo(Archivo* file, Lista* lista, char*(*getString)(void*));
 void grabarLineaEnArchivo(Archivo* file, char* string);
-Persona *crearPersona(char *name, char *apellido);
+Persona *crearPersona(char *);
 void freePersona(Persona *self);
 char* getNombreCompletoPersona(Persona* persona);
+Lista* levantarArchivoEnLista(char* path);
+bool criterioOrden(Persona* p1,Persona* p2);
+void grabarNuevoArchivo(Lista* lista);
+bool filtroMenorDeEdad(Persona* p);
+char* getNuevoStringParaGrabar(Persona* p);
+char* substring(char* s,int desde,int hasta);
