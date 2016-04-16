@@ -1,0 +1,6 @@
+Brasil;Carlos Perez;45;47778888;37.999.888;50
+Argentina;Carlos Perez;20;47778888;37.999.888;4000
+Brasil;Carlos Perez;40;47778888;37.999.888;4000
+Colombia;Carlos Perez;30;47778888;37.999.888;98
+Peru;Carlos Perez;25;47778888;37.999.888;4000
+Argentina;Carlos Perez;15;47778888;37.999.888;4000

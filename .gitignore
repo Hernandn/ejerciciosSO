@@ -1,1 +1,12 @@
 /Debug/
+.project
+.cproject
+.settings
+.gitignore
+*.o
+*.so
+*.d
+*.mk
+*.a
+Release
+build

@@ -6,6 +6,7 @@
  */
 #include "node.h"
 #include "list.h"
+#include <commons/log.h>
 #ifndef FUNCIONES_H_
 #define FUNCIONES_H_
 
@@ -44,3 +45,5 @@ void grabarNuevoArchivo(Lista* lista);
 bool filtroMenorDeEdad(Persona* p);
 char* getNuevoStringParaGrabar(Persona* p);
 char* substring(char* s,int desde,int hasta);
+void logSaldosMenores(Lista* list, t_log* logger);
+void esSaldoMenor(Persona* p);

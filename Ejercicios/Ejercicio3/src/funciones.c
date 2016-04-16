@@ -10,6 +10,7 @@
 #include "funciones.h"
 #include "node.h"
 #include "list.h"
+#include <commons/log.h>
 
 Archivo* abrirArchivoRead(char* ruta){
 	Archivo* archivo = (Archivo*)malloc(sizeof(Archivo));
@@ -31,6 +32,7 @@ Archivo* abrirArchivoAppend(char* ruta){
 
 void cerrarArchivo(Archivo** archivo){
 	fclose((*archivo)->file);
+	free(*archivo);
 }
 
 int finDeArchivo(Archivo* archivo){
@@ -107,7 +109,11 @@ Lista* levantarArchivoEnLista(char* path){
 }
 
 bool criterioOrden(Persona* p1,Persona* p2){
-	return string_equals_ignore_case(p1->region,p2->region)?(p1->edad<p2->edad):strcmp(p1->region,p2->region);
+	if(string_equals_ignore_case(p1->region,p2->region)==0){
+		return p1->edad<p2->edad;
+	} else {
+		return strcmp(p1->region,p2->region)<0;
+	}
 }
 
 void grabarNuevoArchivo(Lista* lista){
@@ -150,6 +156,15 @@ char* substring(char* s,int desde,int hasta)
 	}
 	ret[j]='\0';
 	return ret;
+}
+
+void logSaldosMenores(Lista* list, t_log* logger){
+	void esSaldoMenor(Persona* p){
+		if(p->saldo<100){
+			log_info(logger, "Persona: %s, Saldo: $%d",p->nombreApellido,p->saldo);
+		}
+	}
+	list_iterate(list, esSaldoMenor);
 }
 
 
